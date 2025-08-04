@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تم إرسال الطلب بنجاح - Al-Badiya System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <div class="success-container">
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            
+            <div class="success-header">
+                <h1>🎉 تم إرسال طلبك بنجاح!</h1>
+                <p>شكراً لك على اهتمامك بالانضمام لفريق إدارة Al-Badiya System</p>
+            </div>
+            
+            <div class="success-info">
+                <div class="info-card">
+                    <h3><i class="fas fa-clock"></i> ماذا يحدث الآن؟</h3>
+                    <ul>
+                        <li>تم استلام طلبك وإرساله لفريق الإدارة</li>
+                        <li>سيتم مراجعة طلبك خلال 24-48 ساعة</li>
+                        <li>ستتلقى إشعاراً على Discord بالنتيجة</li>
+                        <li>يمكنك متابعة حالة طلبك من الرابط أدناه</li>
+                    </ul>
+                </div>
+                
+                <div class="info-card">
+                    <h3><i class="fas fa-info-circle"></i> معلومات مهمة</h3>
+                    <ul>
+                        <li>رقم الطلب: <strong id="applicationId">loading...</strong></li>
+                        <li>تاريخ التقديم: <strong id="submissionDate">loading...</strong></li>
+                        <li>الحالة: <span class="status-pending">قيد المراجعة ⏳</span></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="status.html" class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                    تتبع حالة الطلب
+                </a>
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="fas fa-home"></i>
+                    العودة للرئيسية
+                </a>
+            </div>
+            
+            <div class="tips-section">
+                <h3><i class="fas fa-lightbulb"></i> نصائح مفيدة</h3>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <i class="fas fa-bell"></i>
+                        <h4>تفعيل الإشعارات</h4>
+                        <p>تأكد من تفعيل إشعارات Discord لتلقي النتيجة فوراً</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-users"></i>
+                        <h4>كن نشطاً</h4>
+                        <p>استمر في التفاعل في السيرفر وإظهار التزامك</p>
+                    </div>
+                    <div class="tip-card">
+                        <i class="fas fa-book"></i>
+                        <h4>اقرأ القوانين</h4>
+                        <p>راجع قوانين السيرفر وتأكد من فهمها جيداً</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-left">
+            <span>© 2025 Al-Badiya System. جميع الحقوق محفوظة.</span>
+        </div>
+        <div class="footer-right">
+            <a href="#" class="footer-btn">
+                <i class="fab fa-discord"></i>
+                Discord
+            </a>
+            <a href="#" class="footer-btn">
+                <i class="fab fa-github"></i>
+                GitHub
+            </a>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/success.js"></script>
+</body>
+</html>
