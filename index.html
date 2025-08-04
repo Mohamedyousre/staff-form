@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>طلب تقديم إداري - Al-Badiya System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <a href="#" class="back-btn" onclick="goHome()">
+            <i class="fas fa-arrow-right"></i>
+            العودة للصفحة الرئيسية
+        </a>
+        
+        <div class="header">
+            <h1><i class="fas fa-user-tie"></i> طلب تقديم إداري</h1>
+            <p>نحن نبحث عن أعضاء ملتزمين ومسؤولين للانضمام لفريق الإدارة</p>
+        </div>
+        
+        <!-- قسم تسجيل الدخول بـ Discord -->
+        <div id="discordLogin" class="discord-login-section">
+            <div class="discord-card">
+                <div class="discord-header">
+                    <i class="fab fa-discord"></i>
+                    <h2>تسجيل الدخول بـ Discord</h2>
+                </div>
+                <p>يجب تسجيل الدخول بحساب Discord الخاص بك قبل التقديم</p>
+                <button id="discordLoginBtn" class="discord-btn">
+                    <i class="fab fa-discord"></i>
+                    تسجيل الدخول بـ Discord
+                </button>
+            </div>
+        </div>
+        
+        <!-- قسم النموذج (مخفي في البداية) -->
+        <div id="applicationForm" style="display: none;">
+            <div class="user-info-card">
+                <div class="user-avatar">
+                    <img id="userAvatar" src="" alt="User Avatar">
+                </div>
+                <div class="user-details">
+                    <h3 id="userName"></h3>
+                    <p id="userTag"></p>
+                    <p id="userId"></p>
+                </div>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </button>
+            </div>
+            
+            <div class="warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>تنبيه مهم:</strong> يجب ملء جميع الحقول بصدق ووضوح. أي معلومات كاذبة ستؤدي لرفض الطلب نهائياً.
+            </div>
+        
+            <form id="staffApplicationForm">
+                <!-- السؤال الأول: الاسم الحقيقي -->
+                <div class="form-group">
+                    <label for="realName">الاسم الحقيقي <span class="required">*</span></label>
+                    <input type="text" id="realName" name="realName" required placeholder="أدخل اسمك الحقيقي (ممنوع الأسماء المستعارة)">
+                    <small style="color: #ff6b6b; margin-top: 0.5rem; display: block;">⚠️ الأسماء المستعارة ممنوعة ويجب كتابة الاسم الحقيقي فقط</small>
+                </div>
+                
+                <!-- السؤال الثاني: البلد -->
+                <div class="form-group">
+                    <label for="country">البلد <span class="required">*</span></label>
+                    <select id="country" name="country" required>
+                        <option value="">اختر بلدك</option>
+                        <option value="SA">السعودية</option>
+                        <option value="AE">الإمارات العربية المتحدة</option>
+                        <option value="EG">مصر</option>
+                        <option value="JO">الأردن</option>
+                        <option value="LB">لبنان</option>
+                        <option value="SY">سوريا</option>
+                        <option value="IQ">العراق</option>
+                        <option value="KW">الكويت</option>
+                        <option value="QA">قطر</option>
+                        <option value="BH">البحرين</option>
+                        <option value="OM">عمان</option>
+                        <option value="YE">اليمن</option>
+                        <option value="MA">المغرب</option>
+                        <option value="TN">تونس</option>
+                        <option value="DZ">الجزائر</option>
+                        <option value="LY">ليبيا</option>
+                        <option value="SD">السودان</option>
+                        <option value="PS">فلسطين</option>
+                        <option value="other">أخرى</option>
+                    </select>
+                </div>
+                
+                <!-- السؤال الثالث: تاريخ الميلاد -->
+                <div class="form-group">
+                    <label>تاريخ الميلاد <span class="required">*</span></label>
+                    <div class="date-group">
+                        <select id="birthDay" name="birthDay" required>
+                            <option value="">اليوم</option>
+                        </select>
+                        <select id="birthMonth" name="birthMonth" required>
+                            <option value="">الشهر</option>
+                            <option value="1">يناير</option>
+                            <option value="2">فبراير</option>
+                            <option value="3">مارس</option>
+                            <option value="4">أبريل</option>
+                            <option value="5">مايو</option>
+                            <option value="6">يونيو</option>
+                            <option value="7">يوليو</option>
+                            <option value="8">أغسطس</option>
+                            <option value="9">سبتمبر</option>
+                            <option value="10">أكتوبر</option>
+                            <option value="11">نوفمبر</option>
+                            <option value="12">ديسمبر</option>
+                        </select>
+                        <input type="number" id="birthYear" name="birthYear" placeholder="السنة" min="1990" max="2012" required>
+                    </div>
+                    <div class="age-warning" id="ageWarning">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <strong>تنبيه:</strong> يجب أن تكون 13 سنة أو أكثر للتقديم. العمر الحالي المحسوب أقل من 13 سنة.
+                    </div>
+                </div>
+                
+                <!-- السؤال الرابع: الجنس -->
+                <div class="form-group">
+                    <label>الجنس <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="male" name="gender" value="male" required>
+                            <label for="male">ذكر</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="female" name="gender" value="female" required>
+                            <label for="female">أنثى</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- السؤال الخامس: التفاعل -->
+                <div class="form-group">
+                    <label for="activityDays">عدد أيام التفاعل في الأسبوع <span class="required">*</span></label>
+                    <select id="activityDays" name="activityDays" required>
+                        <option value="">اختر عدد الأيام</option>
+                        <option value="1-2">1-2 أيام</option>
+                        <option value="3-4">3-4 أيام</option>
+                        <option value="5-6">5-6 أيام</option>
+                        <option value="7">7 أيام (يومياً)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dailyHours">متوسط ساعات التفاعل في اليوم <span class="required">*</span></label>
+                    <select id="dailyHours" name="dailyHours" required>
+                        <option value="">اختر عدد الساعات</option>
+                        <option value="1-2">1-2 ساعات</option>
+                        <option value="3-4">3-4 ساعات</option>
+                        <option value="5-6">5-6 ساعات</option>
+                        <option value="7-8">7-8 ساعات</option>
+                        <option value="9+">أكثر من 9 ساعات</option>
+                    </select>
+                </div>
+                
+                <!-- السؤال السادس: السيناريو الأول -->
+                <div class="form-group">
+                    <label for="scenario1">السيناريو الأول <span class="required">*</span></label>
+                    <div class="scenario-box">
+                        <strong>سيناريو:</strong> إذا واجهت مشكلة في السيرفر ولم تعرف الحل الصحيح أو كنت تشك في قرارك، ماذا ستفعل؟
+                    </div>
+                    <textarea id="scenario1" name="scenario1" required placeholder="اكتب إجابتك هنا..."></textarea>
+                </div>
+                
+                <!-- السؤال السابع: السيناريو الثاني -->
+                <div class="form-group">
+                    <label for="scenario2">السيناريو الثاني <span class="required">*</span></label>
+                    <div class="scenario-box">
+                        <strong>تخيل:</strong> أنك أصبحت أونر السيرفر ليوم واحد فقط. ما هي الأشياء التي ستقوم بها لتحسين السيرفر خلال هذا اليوم؟
+                    </div>
+                    <textarea id="scenario2" name="scenario2" required placeholder="اكتب خطتك للتحسين..."></textarea>
+                </div>
+                
+                <!-- السؤال الثامن: لماذا اخترتنا -->
+                <div class="form-group">
+                    <label for="whyUs">لماذا اخترت التقديم لدينا؟ <span class="required">*</span></label>
+                    <textarea id="whyUs" name="whyUs" required placeholder="أخبرنا عن أسباب اختيارك لسيرفرنا..."></textarea>
+                </div>
+                
+                <!-- السؤال الاختياري: المايك -->
+                <div class="form-group">
+                    <div class="mic-section">
+                        <div class="mic-question">
+                            <label>
+                                <input type="checkbox" id="hasMic" name="hasMic" value="yes">
+                                <span>هل تمتلك مايك؟ (اختياري)</span>
+                            </label>
+                        </div>
+                        <div class="sub-question" id="canTalkQuestion">
+                            <label>
+                                <input type="checkbox" id="canTalk" name="canTalk" value="yes">
+                                <span>هل تستطيع التحدث؟</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- صناديق الموافقة -->
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="readRules" name="readRules" required>
+                        <label for="readRules">أتحمل مسؤولية قراءتي لجميع قوانين السيرفر وأتعهد بأنني في حالة مخالفة أي من هذه القوانين سأتحمل كامل المسؤولية والعواقب المترتبة على ذلك</label>
+                    </div>
+                    
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                        <label for="agreeTerms">أوافق على جميع شروط وقوانين السيرفر كعضو في فريق الإدارة وأتعهد بالالتزام بها</label>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn" disabled>
+                    <i class="fas fa-paper-plane"></i>
+                    إرسال الطلب
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-left">
+            <span>© 2025 Al-Badiya System. جميع الحقوق محفوظة.</span>
+        </div>
+        <div class="footer-right">
+            <a href="#" class="footer-btn">
+                <i class="fab fa-discord"></i>
+                Discord
+            </a>
+            <a href="#" class="footer-btn">
+                <i class="fab fa-github"></i>
+                GitHub
+            </a>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

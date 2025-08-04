@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حالة الطلب - Al-Badiya System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1><i class="fas fa-search"></i> تتبع حالة الطلب</h1>
+            <p>تحقق من حالة طلب التقديم الإداري الخاص بك</p>
+        </div>
+
+        <!-- قسم تسجيل الدخول -->
+        <div id="loginSection" class="discord-login-section">
+            <div class="discord-card">
+                <div class="discord-header">
+                    <i class="fab fa-discord"></i>
+                    <h2>تسجيل الدخول للتتبع</h2>
+                </div>
+                <p>يجب تسجيل الدخول بحساب Discord لتتبع حالة طلبك</p>
+                <button id="loginBtn" class="discord-btn">
+                    <i class="fab fa-discord"></i>
+                    تسجيل الدخول بـ Discord
+                </button>
+            </div>
+        </div>
+
+        <!-- قسم عرض الحالة -->
+        <div id="statusSection" style="display: none;">
+            <div class="user-info-card">
+                <div class="user-avatar">
+                    <img id="userAvatar" src="" alt="User Avatar">
+                </div>
+                <div class="user-details">
+                    <h3 id="userName"></h3>
+                    <p id="userTag"></p>
+                </div>
+                <button id="logoutBtn" class="logout-btn">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </button>
+            </div>
+
+            <!-- حالة الطلب -->
+            <div id="applicationStatus" class="status-container">
+                <div class="loading-spinner">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>جاري تحميل حالة الطلب...</p>
+                </div>
+            </div>
+
+            <!-- أزرار التنقل -->
+            <div class="action-buttons">
+                <button id="refreshBtn" class="btn btn-success">
+                    <i class="fas fa-sync-alt"></i>
+                    تحديث الحالة
+                </button>
+                <a href="index.html" class="btn btn-secondary">
+                    <i class="fas fa-arrow-right"></i>
+                    العودة للتقديم
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-left">
+            <span>© 2025 Al-Badiya System. جميع الحقوق محفوظة.</span>
+        </div>
+        <div class="footer-right">
+            <a href="#" class="footer-btn">
+                <i class="fab fa-discord"></i>
+                Discord
+            </a>
+            <a href="#" class="footer-btn">
+                <i class="fab fa-github"></i>
+                GitHub
+            </a>
+        </div>
+    </div>
+
+    <script src="js/config.js"></script>
+    <script src="js/status.js"></script>
+</body>
+</html>
