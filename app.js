@@ -123,7 +123,7 @@ function checkAuthStatus() {
     }
 }
 
-// بدء عملية تسجيل الدخول بـ Discord
+// بدء عملية تسجيل الدخول بـ Discord (محدث لمعالجة JSON response)
 async function startDiscordAuth() {
     try {
         // الحصول على رابط التوثيق من الـ backend
