@@ -123,10 +123,32 @@ function checkAuthStatus() {
     }
 }
 
-// بدء عملية تسجيل الدخول بـ Discord
-function startDiscordAuth() {
-    const authUrl = `${CONFIG.DISCORD_OAUTH_URL}?redirect=${encodeURIComponent(window.location.origin + window.location.pathname)}`;
-    window.location.href = authUrl;
+// بدء عملية تسجيل الدخول بـ Discord (محدث لمعالجة JSON response) - v2
+async function startDiscordAuth() {
+    try {
+        console.log('🔄 بدء عملية OAuth...');
+        
+        // الحصول على رابط التوثيق من الـ backend
+        const response = await fetch(`${CONFIG.DISCORD_OAUTH_URL}?redirect=${encodeURIComponent(window.location.origin + window.location.pathname)}`);
+        
+        if (!response.ok) {
+            throw new Error('فشل في الحصول على رابط التوثيق');
+        }
+        
+        const result = await response.json();
+        console.log('📥 استلام رد من الخادم:', result);
+        
+        if (result.success && result.authUrl) {
+            console.log('✅ إعادة التوجيه إلى Discord');
+            // إعادة التوجيه إلى Discord
+            window.location.href = result.authUrl;
+        } else {
+            throw new Error(result.message || 'خطأ في التوثيق');
+        }
+    } catch (error) {
+        console.error('❌ خطأ في بدء التوثيق:', error);
+        showAlert('❌ حدث خطأ في بدء عملية تسجيل الدخول: ' + error.message, 'error');
+    }
 }
 
 // عرض معلومات المستخدم
